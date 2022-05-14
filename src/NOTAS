@@ -1,0 +1,267 @@
+// import logo from './logo.svg';
+// import './App.css';
+
+// function App() {
+
+//   const jsxElement = <h1>Esto es React ¡¡Fuck Yeah!!</h1>
+
+
+//   const MyProfile = {
+//     name: 'Andres',
+//     age: 56,
+//     movie: 'Intelestelar',
+//     Music: 'Salsa',
+//   }
+
+
+//   return (
+//     <div className="App">
+//       <header className="App-header">
+//         <img src={logo} className="App-logo" alt="logo" />
+//         <h1>MODULO REACT</h1>
+//         <div className='Styles-Card'>
+//         <p>
+//           <b>Nombre:</b> {MyProfile.name}<br/>
+//           <b>Edad:</b> {MyProfile.age}<br/>
+//           <b>Pelicula favorita:</b> {MyProfile.movie}<br/>
+//           <b>Musica Favorita:</b> {MyProfile.Music}<br/>
+//         </p>
+//         </div>
+//         {jsxElement}
+//       </header>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+CLASE DE ESTADOS Y OPERADOR AND 
+
+import './App.css';
+import Country from './Components/Country'
+import { Component, useState } from 'react'; 
+
+function App() {
+  const [ country, setCountry] = useState(false)
+
+
+
+  return (
+    <div className="App">
+      <button onClick={() => setCountry(!country)}>Most/Ocul</button>
+      {
+        country && <Country />
+      }
+    </div>
+  );
+}
+
+export default App;
+
+ESTAS ES LA App
+
+Y ESTE ES EL Component
+
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const Country = () => {
+    const [ country, setCountry ] = useState({})
+    const [ isLoading, setIsLoading ] = useState(true)
+    const [ info, setInfo ] = useState('info')
+    
+
+    useEffect(() => {
+        axios.get("https://restcountries.com/v3.1/alpha/pe")
+        .then(res => {
+            setCountry(res.data[0])
+            setIsLoading(false)
+        });
+             
+             
+    }, [] )
+            console.log(country);
+    return(
+        <div>
+        {
+            isLoading ? (
+                <h1>Esta cargando...</h1>
+            ) : (
+                <>
+                    <h1>{country.name?.common}</h1>
+                    <img src={country.flags?.svg} alt="" style={{width: "330px"}}/>
+
+                    <div className='buttons'>
+                        <button onClick={() => setInfo("demography")}>Demography</button>
+                        <button onClick={() => setInfo("location")}>Location</button>
+                        <button onClick={() => setInfo("capital")}>Capital</button>
+                    </div>
+
+
+                    {
+                        info === "demography" ? (
+                            <div>
+                                <h2>Demography</h2>
+                                <p><b>population: </b> {country.population}</p>
+                                <p><b>area: </b>{country.area}</p>
+                            </div>
+                        ) : (
+                            info === "location" ? (
+                            
+                                <div>
+                                    <h2>Location</h2>
+                                    <p><b>continent: </b>{country.continents?.[0]}</p>
+                                    <p><b>region: </b>{country.region}</p>
+                                    <p><b>sub region: </b>{country.subregion}</p>
+                                </div>
+                            ) : (
+                                <div>
+                                    <h2>Capital</h2>
+                                    <p><b>Capital: </b>{country.capital?.[0]}</p>
+                                </div>
+                            )
+                        )
+                    }        
+                </>
+            )
+        }
+
+
+    </div>
+       
+    )
+}       
+
+export default Country;
+
+import './App.css';
+import React, { useState } from 'react';
+
+
+function App() {
+  
+  const alertMessage = () => alert(text)
+  const [ text, setText ] = useState()
+
+  
+  console.log(text);
+  return (
+    <div className="App">
+      <h1>{text}</h1>
+      <input type="text" onChange={e => setText(e.target.value)} value={text} />
+      
+      <button onClick={alertMessage}>Click</button>
+      
+    </div>
+ );
+}
+
+export default App;
+
+
+
+
+import './App.css';
+import QuoteItem from './Components/QuoteItem'
+import users from './users.json'
+
+
+
+function App() {
+    
+  return (
+    <div className="App">
+      <ul>
+        {
+          users.map(user =>(
+            <QuoteItem user={user} key={user.name.last}/>
+            
+          ))
+        }
+        
+      </ul>    
+    </div>
+ );
+}
+
+export default App;
+
+
+
+
+
+import React from 'react';
+
+const QuoteItem = ({user}) => {
+
+    console.log(user);
+    return(
+        <div className='Users'>
+            <h1>{user.name.title} {user.name.first} {user.name.last} </h1>
+            <img src={user.picture.large} alt="fotos" />
+
+        </div>
+    )
+}
+
+
+export default QuoteItem;
+
+
+import './App.css';
+import Location from './Components/Location'
+
+
+function App() {
+    
+  return (
+    <div className="App">
+        <Location />
+    </div>
+ );
+}
+
+export default App;
+
+import axios from "axios";
+import { useEffect, useState} from 'react';
+
+const Location = () =>{
+
+  const [Location, setLocation ] = useState({});
+  const [ id, setId ] = useState('');
+
+    useEffect(() => {
+
+       const random = Math.floor(Math.random() * 126) + 1;
+       axios.get(`https://rickandmortyapi.com/api/location/${random}`)
+       .then((res) => setLocation(res.data));
+       
+       
+      }, []);
+
+      const searchType = () => {
+        console.log(id);
+        axios.get(`https://rickandmortyapi.com/api/location/${id}`)
+       .then((res) => setLocation(res.data));
+      }
+
+      console.log(Location);
+
+    return(
+        <div>
+          <h1>{Location.name}</h1>
+          <div>
+            <input
+             type='text'
+             onChange={(e) => setId(e.target.value)} value={id} />
+            <button onClick={searchType}>Search</button>
+          </div>
+          
+        </div>
+    )
+
+
+}
+
+export default Location;

@@ -1,0 +1,149 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at top left, #600103, #ff9d00, #04cc01);   
+ }
+
+.App {
+  text-align: center;
+  padding: 50px;
+  font-size: 20px;
+}
+
+.Banner img{
+  margin: auto;
+  height: 50vh;
+  width: 160vh;
+  border-radius: 20px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+.head-info p{
+  display: inline;
+  padding: 50px;
+  position: static;
+}
+.head-info{
+  position: static;
+  margin: 0 auto;
+  border: none;
+  border-radius: 10px;
+  height: 15vh;
+  width: 150vh;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+  background-color: #440102;
+  color: white;
+  font-size: 2.5vh;
+}
+.head-info h2{
+  position: static;
+}
+.Container-Input-Button{
+  height: 6vh;
+  width: 60vw;
+  margin: 0 auto;
+  display: inline-flex;
+  border: none;
+}
+
+.Container-Input-Button input{
+  height: 6.3vh;
+  width: 60vw;
+  font-size: 20px;
+  text-align: center;
+  color: green;
+  background-color: #440102;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 15px 0  0 15px;
+  outline: none;
+}
+
+.Container-Input-Button button{
+  width: 100px;
+  height: 6.3vh;
+  cursor: pointer;
+  border: none;
+  color: green;
+  font-size: 1.3rem;
+  background-color: #440102;
+  border-radius: 0 15px 15px 0;
+}
+
+button:hover{
+  background-color: green;
+  color: white;
+}
+
+::placeholder{
+  font-size: 1.5rem;
+  text-align: center;
+  font-style: italic;
+  color: green;
+}
+
+.Card{
+  width: 70vh;
+  height: 30vh;
+  margin: 5px;
+  display: flex;
+  border-radius: 25px;
+  background-color: #440102;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  color: white;
+  float: left;
+  margin-left: 13vh;
+}
+
+.image img{
+  width: 30vh;
+  height: 30vh;
+  border-radius: 25px 0 0 25px ;
+}
+
+.Info-Charac{
+  padding-left: 10px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.image p{
+  position: absolute;
+  border: none;
+  margin-top: 17vh;
+  width: 6.3vw;
+  text-align: left;
+  border-radius: 0 15px 15px 0;
+  background-color: #110e2d;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+}
+
+.image p i{
+  margin: 5px;
+}
+
+.Info-Charac{
+  font-size: 2.2vh;
+  display:grid;
+}
+
+.Sub1{
+  color: rgb(113, 111, 111);
+  font-size: 0.9rem;
+  margin-top: 1px;
+}
+
+.Sub2{
+  color: rgb(113, 111, 111);
+  font-size: 0.9rem;
+  margin-top: 1px;
+}
+
+
+
